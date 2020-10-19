@@ -1,0 +1,7 @@
+secretGenerator:
+- name: mysql-pass
+  literals:
+  - password=redhat
+resources:
+  - db-deployment.yaml
+  - web-deployment.yaml

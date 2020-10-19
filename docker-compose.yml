@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - webapp
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=redhat
+      - DB_NAME=ticketmagpie
+    volumes:
+      - maven_repo:/root/.m2
+
+  db:
+    image: mysql:5.6
+    networks:
+      - webapp
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=redhat
+      - MYSQL_DATABASE=ticketmagpie
+
+networks:
+  webapp:
+
+volumes:
+  maven_repo:
